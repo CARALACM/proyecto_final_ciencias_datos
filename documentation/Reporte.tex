@@ -1,0 +1,44 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,provide=*]{babel}
+
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{listings}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\usepackage{graphicx}
+
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+
+
+\begin{document}
+
+\includepdf[pages=-]{portada.pdf}
+
+\section{Introducción}
+
+% Jupyter Notebook
+% \begingroup
+% \input{notebook_format.tex}
+% \input{notebook_content.tex}
+% \endgroup
+
+\section{Conclusiones}
+
+
+\newpage
+\begin{thebibliography}{9}
+    \bibitem{bib1}
+    Lorem
+
+\end{thebibliography}
+
+\end{document}

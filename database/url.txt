@@ -1,0 +1,2 @@
+https://www.kaggle.com/datasets/parasharmanu/close-to-realistic-calorie-efficiency-dataset
+https://www.kaggle.com/datasets/parasharmanu/synthetic-health-indicators-dataset/data

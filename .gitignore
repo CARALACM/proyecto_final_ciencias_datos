@@ -1,0 +1,110 @@
+# ==========================================
+# Archivo .gitignore Personalizado
+# Python, C++, LaTeX, Flutter, VS Code y Agentes
+# ==========================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.venv
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# --- C++ ---
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+*.exe
+*.out
+*.app
+*.a
+*.lib
+*.la
+*.lai
+*.lo
+
+# --- LaTeX ---
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.toc
+*.synctex.gz
+*.pdf
+*.bbl
+*.blg
+*.brf
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.out
+*.bcf
+*.run.xml
+
+# --- Flutter ---
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+/ephemeral/
+linux/flutter/ephemeral/
+macOS/flutter/ephemeral/
+windows/flutter/ephemeral/
+
+# --- VS Code ---
+.vscode/
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# --- Antigravity ---
+# El módulo oculto de Python 'import antigravity' abre el navegador,
+# pero xkcd requiere volar libre de logs de órbitas o caídas libres.
+.antigravity/
+*.orbit
+*.flight_log
+
+# --- Agentes (Frameworks de IA como CrewAI, Autogen, LangChain) ---
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+*.log
+agent_workspace/
+.crewai/
+.autogen/
+outputs/
+*.json_lines
+.cache/
+GEMINI.md
