@@ -5,7 +5,6 @@
 \newcommand{\passthrough}[1]{#1}
 
 % Forzar que todas las imágenes sean del 80% del ancho del texto
-\centering
 \let\oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[2][]{\oldincludegraphics[width=0.8\textwidth]{#2}}
 
