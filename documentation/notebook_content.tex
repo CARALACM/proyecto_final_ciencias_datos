@@ -4,6 +4,19 @@
 \section{Notebook Proyecto Final Ciencias de
   Datos}\label{notebook-proyecto-final-ciencias-de-datos}
 
+\textbf{En el contexto}: Entrega de resumen ejecutivo a \emph{Oura /
+   Garmin} para implemetación futura de función en sus dispositivos
+\emph{weight control helper}.
+
+\textbf{Respondiendo a la pregunta}: \emph{¿En qué medida el déficit
+   crónico de sueño actúa como penalizador cuantitativo en la eficiencia de
+   la quema calórica de un individuo, independientemente de su nivel de
+   actividad física?}
+
+\phantomsection\label{de080365}
+\subsection{Descripción base de
+   datos}\label{descripciuxf3n-base-de-datos}
+
 \phantomsection\label{8a298e63}
 \begin{lstlisting}[language=Python]
 import pandas as pd
@@ -12,7 +25,7 @@ import seaborn as sns
 import os
 import urllib.request
 
-# Configurar estética visual premium para los gráficos
+# Configurar estética visual para los gráficos
 sns.set_theme(style="whitegrid")
 plt.rcParams['figure.figsize'] = [11, 6]
 plt.rcParams['font.size'] = 11
@@ -42,24 +55,99 @@ display(df.head())
 display(df.describe())
 \end{lstlisting}
 
+\begin{lstlisting}
+La base de datos ya se encuentra descargada.
+Librerías importadas y entorno configurado correctamente.
+\end{lstlisting}
+
+\begin{lstlisting}
+   age  steps_per_day  active_minutes  calories_burned  sleep_hours  \
+0   51           7853              99             1500         6.42   
+1   60           4820              78             1500         6.82   
+2   59           4251              28             1500         6.99   
+3   39           6275              75             1500         6.65   
+4   22           6490              82             1500         5.80   
+
+   hydration_liters    bmi  workouts_per_week  muscle_mass_ratio  \
+0              3.60  22.34                  3              0.321   
+1              4.18  32.30                  6              0.548   
+2              2.95  24.71                  2              0.245   
+3              2.62  28.80                  1              0.389   
+4              0.97  21.92                  2              0.326   
+
+   body_fat_percentage  heart_rate_resting  heart_rate_avg  \
+0                0.050                68.5           102.0   
+1                0.200                72.5           121.2   
+2                0.390                75.4           120.4   
+3                0.197                65.8           114.8   
+4                0.325                71.9           116.2   
+
+   continuous_exercise_days  efficiency_score calorie_efficiency  
+0                         1             0.603     Low Efficiency  
+1                         3             0.958     Low Efficiency  
+2                         1             0.987     Low Efficiency  
+3                         1             0.711     Low Efficiency  
+4                         6             0.551     Low Efficiency  
+\end{lstlisting}
+
+\begin{lstlisting}
+                  age   steps_per_day  active_minutes  calories_burned  \
+count  1000000.000000  1000000.000000  1000000.000000        1000000.0   
+mean        40.982084     7001.232915       69.673644           1500.0   
+std         13.550471     2482.813116       28.602711              0.0   
+min         18.000000     1000.000000       10.000000           1500.0   
+25%         29.000000     5309.000000       50.000000           1500.0   
+50%         41.000000     6993.000000       69.000000           1500.0   
+75%         53.000000     8683.000000       89.000000           1500.0   
+max         64.000000    18924.000000      180.000000           1500.0   
+
+          sleep_hours  hydration_liters             bmi  workouts_per_week  \
+count  1000000.000000    1000000.000000  1000000.000000     1000000.000000   
+mean         6.500965          2.502449       24.221054           2.984637   
+std          1.196880          0.794725        5.372620           1.683523   
+min          3.000000          0.500000       16.000000           0.000000   
+25%          5.690000          1.960000       20.070000           2.000000   
+50%          6.500000          2.500000       24.010000           3.000000   
+75%          7.310000          3.040000       27.950000           4.000000   
+max         10.000000          5.000000       40.000000           7.000000   
+
+       muscle_mass_ratio  body_fat_percentage  heart_rate_resting  \
+count     1000000.000000       1000000.000000      1000000.000000   
+mean            0.350857             0.250580           65.999386   
+std             0.077842             0.097494            5.783210   
+min             0.200000             0.050000           50.000000   
+25%             0.296000             0.182000           62.100000   
+50%             0.350000             0.250000           66.000000   
+75%             0.404000             0.317000           69.900000   
+max             0.600000             0.500000           90.000000   
+
+       heart_rate_avg  continuous_exercise_days  efficiency_score  
+count  1000000.000000            1000000.000000    1000000.000000  
+mean       106.040468                  2.431586          0.877842  
+std         11.424947                  1.685483          0.624647  
+min         80.000000                  1.000000          0.000000  
+25%         98.200000                  1.000000          0.552000  
+50%        106.000000                  2.000000          0.730000  
+75%        113.800000                  3.000000          0.991000  
+max        160.600000                  7.000000         10.000000  
+\end{lstlisting}
+
 \phantomsection\label{820c4b3b}
 \subsection{Definición del Problema}\label{definiciuxf3n-del-problema}
 
 \subsubsection{1. Pregunta a resolver}\label{1-pregunta-a-resolver}
 
-\textbf{¿En qué medida el déficit crónico de sueño y los niveles
-   elevados de estrés actúan como penalizadores cuantitativos en la
-   eficiencia de la quema calórica de un individuo, independientemente de
-   su nivel de actividad física?}
+\textbf{¿En qué medida el déficit crónico de sueño actúa como
+   penalizador cuantitativo en la eficiencia de la quema calórica de un
+   individuo, independientemente de su nivel de actividad física?}
 
 \subsubsection{2. Contexto y Objetivos}\label{2-contexto-y-objetivos}
 
-La falta de sueño y el estrés crónico son epidemias modernas. Buscamos
-entender si el esfuerzo físico de una persona (nivel de actividad) se ve
-mermado en su eficiencia calórica debido a estos factores. El objetivo
-es identificar estos penalizadores y proponer recomendaciones
-personalizadas para mejorar la salud y eficiencia calórica de los
-individuos.
+La falta de sueño es una epidemia moderna. Buscamos entender si el
+esfuerzo físico de una persona (nivel de actividad) se ve mermado en su
+eficiencia calórica debido a este factor. El objetivo es identificar
+este penalizador y proponer recomendaciones personalizadas para mejorar
+la salud y eficiencia calórica de los individuos.
 
 \subsubsection{3. Recursos y Alcance}\label{3-recursos-y-alcance}
 
@@ -69,9 +157,7 @@ individuos.
          \textbf{Recursos}: Se utiliza la base de datos
          \passthrough{\lstinline!calorie\_efficiency\_dataset!} obtenida de
          Kaggle, que cuenta con un millón de instancias (cumpliendo el
-         requerimiento de \textgreater100,000). Adicionalmente, simularemos la
-         variable de estrés basándonos en correlaciones biométricas y datos
-         sintéticos.
+         requerimiento de \textgreater100,000).
    \item
          \textbf{Alcance}: El proyecto simula un trabajo profesional de 9 meses
          de investigación y desarrollo.
@@ -104,10 +190,7 @@ df = pd.read_csv(file_path)
 
 n_records = len(df)
 
-print("Generando perfiles sintéticos de estrés...")
-df['stress_level'] = np.clip(10 - df['sleep_hours'] + (df['heart_rate_resting'] - 60)/10 + np.random.normal(0, 1, n_records), 0, 10).round(1)
-
-print("Generando identidades sintéticas, suele tardar menos de 2 minutos...")
+print("Generando identidades sintéticas...")
 fake_names = [fake.name() for _ in range(n_records)]
 fake_emails = [fake.ascii_free_email() for _ in range(n_records)]
 
@@ -116,9 +199,9 @@ df.insert(0, 'id_usuario', [f"USR_{i:07d}" for i in range(n_records)])
 df.insert(1, 'name', fake_names)
 df.insert(2, 'email', fake_emails)
 
-# Mostrar base de datos con nombres
-print("Identidades sintéticas generadas. Mostrando base de datos con identidades.")
-display(df.head())
+# Mostrar base de datos con indentidades.
+print("Base de datos con identidades sintéticas:")
+display(df)
 
 # Separar la información sensible
 df_sensible = df[['name', 'email', 'id_usuario']].copy()
@@ -134,47 +217,91 @@ display(df.head())
 \end{lstlisting}
 
 \begin{lstlisting}
-Generando perfiles sintéticos de estrés...
-Generando identidades sintéticas, suele tardar menos de 2 minutos...
+Generando identidades sintéticas...
 Insertando identificadores y datos personales al principio...
-Identidades sintéticas generadas. Mostrando base de datos con identidades.
+Base de datos con identidades sintéticas:
 \end{lstlisting}
 
 \begin{lstlisting}
-    id_usuario                    name                          email  age  \
-0  USR_0000000  Alberto Hernán Guevara  marco-antonioroybal@gmail.com   51   
-1  USR_0000001           Darío Canales      horaciobarragan@yahoo.com   60   
-2  USR_0000002      Araceli Villanueva           tomasviera@gmail.com   59   
-3  USR_0000003       Alma Alicia Cabán      camachoclemente@gmail.com   39   
-4  USR_0000004        Gabriel Santiago              amendez@gmail.com   22   
+         id_usuario                                 name  \
+0       USR_0000000               Alberto Hernán Guevara   
+1       USR_0000001                        Darío Canales   
+2       USR_0000002                   Araceli Villanueva   
+3       USR_0000003                    Alma Alicia Cabán   
+4       USR_0000004                     Gabriel Santiago   
+...             ...                                  ...   
+999995  USR_0999995                 Lic. Asunción Merino   
+999996  USR_0999996                  Ing. Sofía de Jesús   
+999997  USR_0999997                 Rubén Gabriel Olvera   
+999998  USR_0999998                Juana Citlali Negrete   
+999999  USR_0999999  Estefanía Florencia Quesada Salinas   
 
-   steps_per_day  active_minutes  calories_burned  sleep_hours  \
-0           7853              99             1500         6.42   
-1           4820              78             1500         6.82   
-2           4251              28             1500         6.99   
-3           6275              75             1500         6.65   
-4           6490              82             1500         5.80   
+                                email  age  steps_per_day  active_minutes  \
+0       marco-antonioroybal@gmail.com   51           7853              99   
+1           horaciobarragan@yahoo.com   60           4820              78   
+2                tomasviera@gmail.com   59           4251              28   
+3           camachoclemente@gmail.com   39           6275              75   
+4                   amendez@gmail.com   22           6490              82   
+...                               ...  ...            ...             ...   
+999995         marcosmeza@hotmail.com   55           5881              81   
+999996         arandaaurora@gmail.com   53           3303              41   
+999997          loerahernan@yahoo.com   28           8553              62   
+999998         federico49@hotmail.com   34           6936              52   
+999999          ernesto25@hotmail.com   50           4485              71   
 
-   hydration_liters    bmi  workouts_per_week  muscle_mass_ratio  \
-0              3.60  22.34                  3              0.321   
-1              4.18  32.30                  6              0.548   
-2              2.95  24.71                  2              0.245   
-3              2.62  28.80                  1              0.389   
-4              0.97  21.92                  2              0.326   
+        calories_burned  sleep_hours  hydration_liters    bmi  \
+0                  1500         6.42              3.60  22.34   
+1                  1500         6.82              4.18  32.30   
+2                  1500         6.99              2.95  24.71   
+3                  1500         6.65              2.62  28.80   
+4                  1500         5.80              0.97  21.92   
+...                 ...          ...               ...    ...   
+999995             1500         4.06              1.91  25.66   
+999996             1500         6.65              1.58  26.21   
+999997             1500         5.33              3.86  20.70   
+999998             1500         8.52              1.58  21.95   
+999999             1500         7.29              1.93  27.92   
 
-   body_fat_percentage  heart_rate_resting  heart_rate_avg  \
-0                0.050                68.5           102.0   
-1                0.200                72.5           121.2   
-2                0.390                75.4           120.4   
-3                0.197                65.8           114.8   
-4                0.325                71.9           116.2   
+        workouts_per_week  muscle_mass_ratio  body_fat_percentage  \
+0                       3              0.321                0.050   
+1                       6              0.548                0.200   
+2                       2              0.245                0.390   
+3                       1              0.389                0.197   
+4                       2              0.326                0.325   
+...                   ...                ...                  ...   
+999995                  5              0.322                0.101   
+999996                  1              0.200                0.329   
+999997                  4              0.426                0.339   
+999998                  7              0.251                0.332   
+999999                  4              0.209                0.448   
 
-   continuous_exercise_days  efficiency_score calorie_efficiency  stress_level  
-0                         1             0.603     Low Efficiency           4.9  
-1                         3             0.958     Low Efficiency           4.3  
-2                         1             0.987     Low Efficiency           5.2  
-3                         1             0.711     Low Efficiency           5.5  
-4                         6             0.551     Low Efficiency           5.2  
+        heart_rate_resting  heart_rate_avg  continuous_exercise_days  \
+0                     68.5           102.0                         1   
+1                     72.5           121.2                         3   
+2                     75.4           120.4                         1   
+3                     65.8           114.8                         1   
+4                     71.9           116.2                         6   
+...                    ...             ...                       ...   
+999995                70.0           110.8                         2   
+999996                67.4           111.3                         1   
+999997                61.4           119.0                         1   
+999998                64.9           107.0                         2   
+999999                72.7           135.7                         1   
+
+        efficiency_score calorie_efficiency  
+0                  0.603     Low Efficiency  
+1                  0.958     Low Efficiency  
+2                  0.987     Low Efficiency  
+3                  0.711     Low Efficiency  
+4                  0.551     Low Efficiency  
+...                  ...                ...  
+999995             0.387     Low Efficiency  
+999996             1.393     Low Efficiency  
+999997             0.515     Low Efficiency  
+999998             0.595     Low Efficiency  
+999999             0.611     Low Efficiency  
+
+[1000000 rows x 18 columns]
 \end{lstlisting}
 
 \begin{lstlisting}
@@ -203,12 +330,12 @@ Anonimización completada. Base de datos segura guardada en 'database/calorie_ef
 3                0.197                65.8           114.8   
 4                0.325                71.9           116.2   
 
-   continuous_exercise_days  efficiency_score calorie_efficiency  stress_level  
-0                         1             0.603     Low Efficiency           4.9  
-1                         3             0.958     Low Efficiency           4.3  
-2                         1             0.987     Low Efficiency           5.2  
-3                         1             0.711     Low Efficiency           5.5  
-4                         6             0.551     Low Efficiency           5.2  
+   continuous_exercise_days  efficiency_score calorie_efficiency  
+0                         1             0.603     Low Efficiency  
+1                         3             0.958     Low Efficiency  
+2                         1             0.987     Low Efficiency  
+3                         1             0.711     Low Efficiency  
+4                         6             0.551     Low Efficiency  
 \end{lstlisting}
 
 \phantomsection\label{7164ed47}
@@ -216,58 +343,50 @@ Anonimización completada. Base de datos segura guardada en 'database/calorie_ef
    Datos}\label{exploraciuxf3n-y-validaciuxf3n-de-datos}
 
 Verificamos las distribuciones, especialmente de nuestras variables de
-interés: \passthrough{\lstinline!sleep\_hours!},
-\passthrough{\lstinline!stress\_level!}, y
+interés: \passthrough{\lstinline!sleep\_hours!} y
 \passthrough{\lstinline!efficiency\_score!}.
 
 \phantomsection\label{fdf53fbf}
 \begin{lstlisting}[language=Python]
-
-fig, axs = plt.subplots(1, 3, figsize=(18, 5))
+fig, axs = plt.subplots(1, 2, figsize=(14, 5))
 sns.histplot(df['sleep_hours'], bins=30, kde=True, ax=axs[0], color='skyblue')
 axs[0].set_title('Distribución de Horas de Sueño')
 
-sns.histplot(df['stress_level'], bins=30, kde=True, ax=axs[1], color='salmon')
-axs[1].set_title('Distribución de Nivel de Estrés (Simulado)')
-
-sns.histplot(df['efficiency_score'], bins=30, kde=True, ax=axs[2], color='lightgreen')
-axs[2].set_title('Distribución de Eficiencia Calórica')
+sns.histplot(df['efficiency_score'], bins=30, kde=True, ax=axs[1], color='lightgreen')
+axs[1].set_title('Distribución de Eficiencia Calórica')
 
 plt.tight_layout()
-plt.savefig('documentation/notebook_images/distribuciones.png', bbox_inches='tight')
 plt.show()
 
-# Correlación entre estrés, sueño y eficiencia
-correlation_cols = ['sleep_hours', 'stress_level', 'efficiency_score', 'active_minutes', 'workouts_per_week']
+# Correlación entre sueño y eficiencia
+correlation_cols = ['sleep_hours', 'efficiency_score', 'active_minutes', 'workouts_per_week']
 corr = df[correlation_cols].corr()
 
 plt.figure(figsize=(8, 6))
 sns.heatmap(corr, annot=True, cmap='coolwarm', fmt=".2f", vmin=-1, vmax=1)
 plt.title("Correlación de Variables Clave")
-plt.savefig('documentation/notebook_images/correlacion.png', bbox_inches='tight')
 plt.show()
-
 \end{lstlisting}
 
-\includegraphics{notebook_images/3a9e1a1ab13e47e3f1df48aaf951edcde9559eef.png}
+\includegraphics{notebook_images/b415d7a2509143103b19de681091338a3b6c8608.png}
 
-\includegraphics{notebook_images/d0ec31de0c4cbb90d8833ea734845e6fe623c548.png}
+\includegraphics{notebook_images/89c025a7e87915114ddb91450890de0ead976bc3.png}
 
 \phantomsection\label{b2ab3fb7}
 \subsection{Modelado: Agrupamiento
    (K-Means)}\label{modelado-agrupamiento-k-means}
 
-Vamos a segmentar a los usuarios utilizando K-Means en base a su nivel
-de estrés, horas de sueño y eficiencia calórica, para identificar los
-perfiles de riesgo.
+Vamos a segmentar a los usuarios utilizando K-Means en base a sus horas
+de sueño y eficiencia calórica, para identificar los perfiles de riesgo.
 
 \phantomsection\label{bbe6a9a7}
 \begin{lstlisting}[language=Python]
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
-features_cluster = ['sleep_hours', 'stress_level', 'efficiency_score']
-# Tomar una muestra representativa para visualización y rapidez en clustering (ej. 50k)
+features_cluster = ['sleep_hours', 'efficiency_score']
+
+# Tomar una muestra representativa para visualización y rapidez en clustering
 df_sample = df.sample(n=50000, random_state=42).copy()
 
 scaler = StandardScaler()
@@ -277,24 +396,61 @@ kmeans = KMeans(n_clusters=3, random_state=42, n_init=10)
 df_sample['Cluster'] = kmeans.fit_predict(X_scaled)
 
 plt.figure(figsize=(10, 6))
-sns.scatterplot(data=df_sample, x='stress_level', y='efficiency_score', hue='Cluster', palette='viridis', alpha=0.6)
-plt.title("Clusters: Estrés vs Eficiencia Calórica")
-plt.savefig('documentation/notebook_images/clusters.png', bbox_inches='tight')
+sns.scatterplot(data=df_sample, x='sleep_hours', y='efficiency_score', hue='Cluster', palette='viridis', alpha=0.6)
+plt.title("Clusters: Horas de Sueño vs Eficiencia Calórica")
 plt.show()
 
 print("Centros de los Clusters (Escalados):")
 print(kmeans.cluster_centers_)
-
 \end{lstlisting}
 
-\includegraphics{notebook_images/608c22655b6b965ed822c89ac16f030da3d781f6.png}
+\includegraphics{notebook_images/7da66f4863bcc1ccd1b3a4523d1957e1a3d96de6.png}
 
 \begin{lstlisting}
 Centros de los Clusters (Escalados):
-[[-0.76135005  0.72512296 -0.22345597]
- [ 0.73693631 -0.75442113 -0.07531256]
- [ 0.1634507   0.53204327  3.86413569]]
+[[ 1.65863121e-01  3.96128745e+00]
+ [-8.18926440e-01 -2.97704403e-01]
+ [ 7.75303671e-01  6.47684029e-05]]
 \end{lstlisting}
+
+\phantomsection\label{627f7186}
+\begin{lstlisting}[language=Python]
+# Mostrar visualmente el tamaño de cada cluster
+cluster_counts = df_sample['Cluster'].value_counts().sort_index()
+
+centers_original = scaler.inverse_transform(kmeans.cluster_centers_)
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=df_sample, x='sleep_hours', y='efficiency_score', hue='Cluster', palette='viridis', alpha=0.05, legend=False)
+
+
+factor_tamano = 0.3 
+plt.scatter(
+    centers_original[:, 0],
+    centers_original[:, 1],
+    s=cluster_counts * factor_tamano,
+    c=[0, 1, 2],
+    cmap='viridis',
+    alpha=0.5,
+    edgecolors='black',
+    linewidth=1
+)
+
+for i in range(3):
+    plt.text(
+        centers_original[i, 0], 
+        centers_original[i, 1], 
+        f"Grupo {i}\n({cluster_counts[i]} personas)", 
+        ha='center', va='center', 
+        fontsize=10, fontweight='bold', color='black'
+    )
+plt.title("Tamaño de los Grupos: Horas de Sueño vs Eficiencia Calórica")
+plt.xlabel("sleep_hours")
+plt.ylabel("efficiency_score")
+plt.grid(True)
+plt.show()
+\end{lstlisting}
+
+\includegraphics{notebook_images/bbbd51caeac3d3f78f6105b0eef1baf048876a46.png}
 
 \phantomsection\label{7464e1c0}
 \subsection{Modelado: Predicción (Random
@@ -311,7 +467,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
 # Preparar datos
-features = ['age', 'steps_per_day', 'active_minutes', 'sleep_hours', 'bmi', 'workouts_per_week', 'stress_level']
+features = ['age', 'steps_per_day', 'active_minutes', 'sleep_hours', 'bmi', 'workouts_per_week']
 target = 'efficiency_score'
 
 X = df_sample[features]
@@ -333,83 +489,72 @@ feature_imp_df = pd.DataFrame({'Feature': features, 'Importance': importances}).
 plt.figure(figsize=(10, 6))
 sns.barplot(data=feature_imp_df, x='Importance', y='Feature', hue='Feature', palette='mako', legend=False)
 plt.title("Importancia de Variables en la Eficiencia Calórica")
-plt.savefig('documentation/notebook_images/feature_importance.png', bbox_inches='tight')
 plt.show()
-
 \end{lstlisting}
 
 \begin{lstlisting}
-R^2 Score: 0.8954
-MSE: 0.0399
+R^2 Score: 0.8938
+MSE: 0.0405
 \end{lstlisting}
 
-\includegraphics{notebook_images/1ce0e9e97f518a46d49b2ed20a83c6af82054e7d.png}
+\includegraphics{notebook_images/551d918b5c9f8f6d4c5a724b4be9ac0212cbe9a9.png}
 
 \phantomsection\label{9e9ed24c}
-\subsection{Validación de Resultados y Análisis de
-   Sensibilidad}\label{validaciuxf3n-de-resultados-y-anuxe1lisis-de-sensibilidad}
+\subsection{Validación de Resultados}\label{validaciuxf3n-de-resultados}
 
 Utilizaremos métodos estadísticos (p-value con statsmodels) para validar
-el impacto de \passthrough{\lstinline!sleep\_hours!} y
-\passthrough{\lstinline!stress\_level!}. Además, un análisis de
-sensibilidad alterando las horas de sueño.
+el impacto de \passthrough{\lstinline!sleep\_hours!}. Además, un
+análisis de sensibilidad alterando las horas de sueño.
 
 \phantomsection\label{ac8b6921}
 \begin{lstlisting}[language=Python]
 import statsmodels.api as sm
 
 # OLS Regression para P-Values
-X_sm = sm.add_constant(df_sample[['sleep_hours', 'stress_level', 'active_minutes', 'bmi']])
+X_sm = sm.add_constant(df_sample[['sleep_hours', 'active_minutes', 'bmi']])
 y_sm = df_sample['efficiency_score']
 
 model_sm = sm.OLS(y_sm, X_sm).fit()
-print(model_sm.summary())
-
-# Análisis de sensibilidad: ¿Qué pasa si reducimos el estrés en 2 puntos y aumentamos el sueño en 1 hora?
-X_sens = X_test.copy()
-X_sens['stress_level'] = np.clip(X_sens['stress_level'] - 2, 0, 10)
-X_sens['sleep_hours'] = np.clip(X_sens['sleep_hours'] + 1, 0, 24)
-
-y_pred_sens = rf.predict(X_sens)
-
-mejora_promedio = np.mean(y_pred_sens - y_pred)
-print(f"Mejora promedio en la eficiencia calórica al mejorar el sueño y reducir estrés: {mejora_promedio:.4f} puntos.")
-
+print(model_sm.pvalues)
 \end{lstlisting}
 
 \begin{lstlisting}
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:       efficiency_score   R-squared:                       0.461
-Model:                            OLS   Adj. R-squared:                  0.461
-Method:                 Least Squares   F-statistic:                 1.068e+04
-Date:                Thu, 04 Jun 2026   Prob (F-statistic):               0.00
-Time:                        19:04:20   Log-Likelihood:                -31953.
-No. Observations:               50000   AIC:                         6.392e+04
-Df Residuals:                   49995   BIC:                         6.396e+04
-Df Model:                           4                                         
-Covariance Type:            nonrobust                                         
-==================================================================================
-                     coef    std err          t      P>|t|      [0.025      0.975]
-----------------------------------------------------------------------------------
-const             -0.1126      0.030     -3.800      0.000      -0.171      -0.055
-sleep_hours        0.0952      0.003     36.976      0.000       0.090       0.100
-stress_level       0.0029      0.002      1.488      0.137      -0.001       0.007
-active_minutes    -0.0082      0.000    -77.765      0.000      -0.008      -0.008
-bmi                0.0384      0.001     68.778      0.000       0.037       0.039
-==============================================================================
-Omnibus:                    43951.780   Durbin-Watson:                   2.010
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):          1892595.801
-Skew:                           4.123   Prob(JB):                         0.00
-Kurtosis:                      31.990   Cond. No.                     1.14e+03
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 1.14e+03. This might indicate that there are
-strong multicollinearity or other numerical problems.
-Mejora promedio en la eficiencia calórica al mejorar el sueño y reducir estrés: 0.0838 puntos.
+const             0.000179
+sleep_hours       0.000000
+active_minutes    0.000000
+bmi               0.000000
+dtype: float64
 \end{lstlisting}
+
+\phantomsection\label{c37ac32f}
+\subsection{Análisis de Sensibilidad}\label{anuxe1lisis-de-sensibilidad}
+
+Aplicamos un analísis de sensibilidad a nuestro modelo añadiendo 10
+minutos de sueño a una muestra.
+
+\phantomsection\label{fa8aec0b}
+\begin{lstlisting}[language=Python]
+# Medición de sensibilidad
+X_original = df_sample[features].copy()
+
+# Original + 1 Minuto
+X_sens_10_min = X_original.copy()
+X_sens_10_min['sleep_hours'] = np.clip(X_sens_10_min['sleep_hours'] + (10/60), 0, 24)
+
+eficiencia_original = rf.predict(X_original)
+eficiencia_10_min = rf.predict(X_sens_10_min)
+
+plt.figure(figsize=(12, 6))
+sns.kdeplot(eficiencia_original, fill=True, alpha=0.3, label="Escenario Base (Original)", color="orange")
+sns.kdeplot(eficiencia_10_min, fill=True, alpha=0.3, label="Escenario: + 10 Minuto", color="skyblue")
+plt.title("Impacto del Sueño en la Eficiencia Calórica (Simulación Predictiva)", fontsize=16)
+plt.xlabel("efficiency_score (prediction)")
+plt.ylabel("density")
+plt.legend()
+plt.show()
+\end{lstlisting}
+
+\includegraphics{notebook_images/419755bb41a49dc9faa1e487ee6bc9a8e13c8c11.png}
 
 \phantomsection\label{a348316e}
 \subsection{Interpretación y
@@ -423,20 +568,19 @@ K-Means), se demostró cuantitativamente que:
 \begin{enumerate}
    \tightlist
    \item
-         \textbf{El déficit de sueño y el alto nivel de estrés} actúan como
-         penalizadores significativos en la eficiencia calórica. Las personas
-         con alto estrés tienden a mostrar una menor eficiencia incluso si
-         mantienen niveles aceptables de actividad física.
+         \textbf{El déficit de sueño} actúa como un penalizador significativo
+         en la eficiencia calórica. Las personas con déficit de sueño tienden a
+         mostrar una menor eficiencia incluso si mantienen niveles aceptables
+         de actividad física.
    \item
-         Según el modelo Random Forest, las horas de sueño y el nivel de estrés
-         están entre los factores que más influyen en el score de eficiencia.
+         Según el modelo Random Forest, las horas de sueño están entre los
+         factores más influyentes en el score de eficiencia calórica de un
+         individuo.
    \item
-         El análisis de sensibilidad reveló que una mejora de 1 hora de sueño y
-         la reducción de estrés (simulada en 2 puntos) puede incrementar
-         significativamente la eficiencia calórica de un individuo.
+         El análisis de sensibilidad reveló que una mejora de 1 hora de sueño
+         puede incrementar significativamente la eficiencia calórica.
 \end{enumerate}
 
 \textbf{Recomendación:} Las aplicaciones de salud no solo deben
 enfocarse en contar pasos o calorías, sino implementar programas de
-higiene de sueño y manejo de estrés para maximizar los resultados de los
-usuarios.
+higiene de sueño para maximizar los resultados de los usuarios.

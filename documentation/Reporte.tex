@@ -25,6 +25,22 @@
 
 \section{Introducción}
 
+El presente reporte documenta un análisis exhaustivo sobre los factores que determinan la eficiencia calórica de un individuo. El objetivo central de la investigación es evaluar en qué medida el déficit crónico de sueño actúa como un penalizador cuantitativo en la eficiencia de la quema calórica, independientemente del nivel de actividad física de la persona.
+
+Para llevar a cabo este estudio computacional, se utilizaron datos de entrenamiento provenientes de la base de datos \textit{Calorie Efficiency Dataset} obtenida de la plataforma Kaggle. Esta base de datos cuenta con 1,000,000 de registros que documentan hábitos de estilo de vida, incluyendo: edad, índice de masa corporal (BMI), pasos por día, minutos activos y horas de sueño. Para los procesos de agrupamiento e iteración, se extrajo una muestra representativa de 50,000 registros para optimizar el tiempo de ejecución computacional.
+
+El desarrollo del análisis se fundamentó en la aplicación de diversas técnicas de estadística y \textit{Machine Learning}. A continuación, se definen conceptualmente las métricas y técnicas que el lector encontrará a lo largo del desarrollo del código:
+
+\begin{itemize}
+    \item \textbf{Agrupamiento (K-Means Clustering):} Algoritmo de aprendizaje no supervisado utilizado para descubrir patrones naturales en la población, dividiendo a los individuos en grupos (clusters) basados en similitudes de sus hábitos de sueño y eficiencia.
+    \item \textbf{Importancia de Variables (Feature Importance):} Métrica extraída de nuestro modelo predictivo \textit{Random Forest}. Esta técnica rankea y cuantifica matemáticamente qué peso tiene cada hábito (por ejemplo, los pasos diarios frente a las horas de sueño) en la eficiencia calórica final de los usuarios.
+    \item \textbf{Valor p (P-Value):} Métrica extraída de un análisis de regresión múltiple. Nos permite validar la significancia estadística de nuestro descubrimiento. Obtener un p-value de $0.000$ para las horas de sueño nos da certeza matemática de que su impacto sobre el metabolismo es real y no un artefacto producto de la casualidad estadística.
+    \item \textbf{Coeficiente de Determinación ($R^2$ Score):} Calificación del poder predictivo de nuestro modelo \textit{Random Forest}. Representa el porcentaje de la variabilidad del problema que el modelo logra entender y explicar correctamente (un valor más cercano a 1.0 indica un modelo excelente).
+    \item \textbf{Error Cuadrático Medio (MSE):} Métrica utilizada para evaluar qué tan precisas son las predicciones del modelo. Cuantifica, en promedio, la magnitud de los errores que comete el modelo al adivinar la eficiencia de un usuario; mientras más bajo sea el MSE, más preciso es el modelo.
+\end{itemize}
+
+A continuación, se presenta el desarrollo técnico paso a paso extraído directamente de nuestro entorno de desarrollo:
+
 % Jupyter Notebook
 \begingroup
 \input{notebook_format.tex}
@@ -32,13 +48,34 @@
 \endgroup
 
 \section{Conclusiones}
+A través del análisis estadístico y de machine learning (Random Forest,
+K-Means), se demostró cuantitativamente que:
 
+\begin{enumerate}
+    \tightlist
+    \item
+          \textbf{El déficit de sueño} actúa como un penalizador significativo
+          en la eficiencia calórica. Las personas con déficit de sueño tienden a
+          mostrar una menor eficiencia incluso si mantienen niveles aceptables
+          de actividad física.
+    \item
+          Según el modelo Random Forest, las horas de sueño están entre los
+          factores más influyentes en el score de eficiencia calórica de un
+          individuo.
+    \item
+          El análisis de sensibilidad reveló que una mejora de 1 hora de sueño
+          puede incrementar significativamente la eficiencia calórica.
+\end{enumerate}
 
-\newpage
-\begin{thebibliography}{9}
-    \bibitem{bib1}
-    Lorem
+\textbf{Recomendación:} Las aplicaciones de salud no solo deben
+enfocarse en contar pasos o calorías, sino implementar programas de
+higiene de sueño para maximizar los resultados de los usuarios.
 
-\end{thebibliography}
+% \newpage
+% \begin{thebibliography}{9}
+%     \bibitem{bib1}
+%     Lorem
+
+% \end{thebibliography}
 
 \end{document}
