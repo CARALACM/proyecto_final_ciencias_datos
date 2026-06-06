@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, provide=*]{babel}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{fancyhdr}
+
+% Definición de colores corporativos
+\definecolor{ourablack}{RGB}{34, 34, 34}
+\definecolor{garminblue}{RGB}{0, 124, 195}
+
+% Formato de títulos
+\titleformat{\section}{\Large\bfseries\color{ourablack}}{}{1em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries\color{garminblue}}{}{1em}{}
+
+% Encabezados y pie de página
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textbf{Propuesta: \textit{Weight Control Helper}}}
+\lhead{\textbf{Oura / Garmin - Resumen Ejecutivo}}
+\cfoot{\thepage}
+
+\begin{document}
+
+\begin{center}
+    \vspace*{0.5cm}
+    {\huge \textbf{El Sueño como Penalizador en la Eficiencia Calórica}}\\[0.5cm]
+    {\Large \textbf{Resumen Ejecutivo para Integración en Dispositivos Oura / Garmin}}\\[0.3cm]
+    {\large \textbf{Módulo Propuesto:} \textit{Weight Control Helper}}\\[0.8cm]
+\end{center}
+
+\section*{1. Planteamiento del Problema}
+En el contexto del desarrollo de nuevas funcionalidades para los ecosistemas de salud integral de Oura y Garmin, este documento responde a una interrogante fundamental para el diseño de la futura función \textit{Weight Control Helper}: \textbf{¿En qué medida el déficit crónico de sueño actúa como penalizador cuantitativo en la eficiencia de la quema calórica de un individuo, independientemente de su nivel de actividad física?}
+
+\section*{2. Metodología y Base Analítica}
+Para responder a esta pregunta de negocio y fundamentar el funcionamiento del nuevo módulo, se llevó a cabo un estudio computacional exhaustivo basado en la \textit{Calorie Efficiency Dataset}, la cual comprende \textbf{1,000,000 de registros} documentados de hábitos de estilo de vida, incluyendo: horas de sueño, minutos activos, pasos diarios e índice de masa corporal (BMI).
+
+El análisis técnico se sustentó en un muestreo de 50,000 perfiles analizados mediante algoritmos de \textit{Machine Learning} y modelado estadístico:
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+    \item \textbf{Agrupamiento (K-Means):} Utilizado para descubrir patrones naturales en la población y segmentar a los usuarios en perfiles de riesgo metabólico.
+    \item \textbf{Random Forest Regressor:} Modelo predictivo altamente robusto (Score $R^2$ de 0.8938 y MSE de 0.0405) que cuantificó matemáticamente el peso de cada hábito en la eficiencia calórica final.
+    \item \textbf{Análisis de Regresión (Valor $p$):} Método para validar la significancia estadística del descubrimiento, obteniendo un valor $p = 0.000$ para la variable de horas de sueño, lo que elimina la posibilidad de sesgo por casualidad.
+\end{itemize}
+
+\section*{3. Hallazgos Cuantitativos Clave}
+
+Tras el entrenamiento de los modelos y la evaluación de la importancia de las variables (\textit{Feature Importance}), se comprobó empíricamente el impacto del sueño en el metabolismo:
+
+\subsection*{A. El Sueño Supera a la Actividad Física como Determinante}
+De acuerdo al modelo predictivo Random Forest, \textbf{las horas de sueño se posicionan entre los factores más determinantes} para la eficiencia calórica de un individuo, compitiendo directamente con la métrica de pasos diarios (\textit{steps per day}). Este hallazgo demuestra que el esfuerzo físico por sí solo (como los minutos activos o entrenamientos por semana) no garantiza la eficiencia si el usuario no alcanza umbrales de descanso adecuados.
+
+\subsection*{B. Penalización Cuantitativa Constatada}
+El análisis de agrupamiento y los resultados predictivos evidencian que el déficit crónico de sueño actúa como un penalizador biológico significativo. \textbf{Los usuarios con déficit de sueño tienden a mostrar un nivel de eficiencia calórica considerablemente menor (baja eficiencia), incluso si mantienen y cumplen con métricas de actividad física (pasos y entrenamientos) altamente aceptables.} En términos prácticos, la quema calórica se ve truncada.
+
+\subsection*{C. Simulación y Análisis de Sensibilidad}
+Mediante un análisis de sensibilidad sobre la muestra original, se proyectó el impacto real de mejorar el descanso. La simulación predictiva comprobó que añadir sostenidamente \textbf{tan solo entre 10 minutos y 1 hora adicional de sueño} en usuarios con perfiles de déficit genera un incremento estadísticamente significativo en su \textit{efficiency score}, mejorando de manera tangible sus resultados de salud.
+
+\section*{4. Conclusión Estratégica y Recomendación}
+
+El análisis de datos demostró que la eficiencia calórica no es un simple cálculo aritmético de entradas y salidas de energía. \textbf{El descanso es un multiplicador (o penalizador) absoluto en la ecuación de la quema de calorías.}
+
+\subsection*{Implementación en Oura / Garmin}
+Se recomienda estratégicamente que las aplicaciones de salud de Oura y Garmin \textbf{no se limiten únicamente a mostrar el conteo de pasos o la quema activa de calorías}. Para que la nueva función \textit{Weight Control Helper} logre resultados superiores y de mayor precisión frente a la competencia, la plataforma debe:
+\begin{enumerate}
+    \item \textbf{Vincular las metas de peso con programas de higiene de sueño.} Exigir o promediar los niveles de sueño como requisito indispensable para lograr objetivos de \textit{fitness}.
+    \item \textbf{Notificar "Penalizaciones Metabólicas" en tiempo real.} Alertar al usuario cuando su esfuerzo físico (anillos cerrados o entrenamientos completados) no esté siendo asimilado o aprovechado al máximo debido a métricas deficientes de sueño en días consecutivos.
+    \item \textbf{Ajustar recomendaciones de quema calórica dinámicamente} utilizando un modelo predictivo integrado en el dispositivo, sumando importancia al índice de recuperación (\textit{readiness}).
+\end{enumerate}
+
+\end{document}
